@@ -1,7 +1,7 @@
-FROM golang:latest AS builder
+FROM golang:1.23.3-alpine3.20 AS builder
 WORKDIR /app
 COPY app /app
-RUN go build message.go
+RUN go build -v -ldflags="-s -w" -o ./ message.go
 
 FROM scratch
 WORKDIR /exec
